@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Theo Löfgren – Teknisk Portfölj | Maskinteknik &amp; System</title>
+
+  <!-- Laddar typsnittet Inter från Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Laddar Tailwind CSS för responsiv design -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              DEFAULT: '#0f4c81',
+              dark: '#093256',
+              light: '#e8f1f8',
+            },
+          },
+        },
+      },
+    };
+  </script>
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans antialiased selection:bg-brand selection:text-white">
+
+  <!-- Toast-meddelande (ersätter alert()) -->
+  <div id="toast" class="fixed bottom-4 right-4 z-50 hidden max-w-sm rounded-xl bg-slate-900 text-white px-4 py-3 text-sm font-medium shadow-xl ring-1 ring-white/15" role="status" aria-live="polite">
+    <span id="toastText"></span>
+  </div>
+
+  <!-- Toppnavigation -->
+  <header class="sticky top-0 z-40 border-b border-slate-200/80 bg-white/90 backdrop-blur-md">
+    <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3.5 sm:px-6 lg:px-8">
+      <a href="#top" class="flex items-center gap-2.5 text-left group">
+        <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-brand text-sm font-bold text-white shadow-sm transition group-hover:bg-brand-dark">
+          TL
+        </span>
+        <div>
+          <span class="block text-sm font-bold tracking-tight text-slate-900">Theo Löfgren</span>
+          <span class="block text-[11px] font-medium text-slate-500">Maskinteknik • Halmstad</span>
+        </div>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600">
+        <a href="#projekt" class="hover:text-brand transition">Projekt</a>
+        <a href="#kompetenser" class="hover:text-brand transition">Kompetenser</a>
+        <a href="#erfarenhet" class="hover:text-brand transition">Erfarenhet &amp; Utbildning</a>
+        <a href="#kontakt" class="hover:text-brand transition">Kontakt</a>
+      </nav>
+
+      <div class="flex items-center gap-2.5">
+        <a href="https://www.linkedin.com/in/theo-löfgren-b1b059342/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center rounded-xl border border-slate-300 bg-white px-3.5 py-2 text-xs sm:text-sm font-semibold text-slate-800 hover:bg-slate-100 transition">
+          LinkedIn
+        </a>
+        <a href="#kontakt" class="inline-flex items-center justify-center rounded-xl bg-brand px-3.5 py-2 text-xs sm:text-sm font-semibold text-white hover:bg-brand-dark transition shadow-sm">
+          Kandidatexjobb
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- Hero-sektion -->
+    <section class="border-b border-slate-200 bg-gradient-to-b from-white via-brand-light/30 to-slate-50 pt-10 pb-12 sm:pt-14 sm:pb-16">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+
+          <div class="lg:col-span-8 space-y-5">
+            <div class="inline-flex items-center gap-2 rounded-full border border-brand/20 bg-brand-light px-3.5 py-1 text-xs font-semibold text-brand">
+              <span class="h-2 w-2 rounded-full bg-brand"></span>
+              <span>Söker kandidatexamensarbete (15 hp) • Civilingenjörsstudent År 3</span>
+            </div>
+
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900 leading-[1.12]">
+              Mekanisk konstruktion, FEA &amp; systemförståelse från idé till prototyp.
+            </h1>
+
+            <p class="text-base sm:text-lg leading-relaxed text-slate-700 max-w-3xl">
+              Jag är maskinteknikstudent vid Högskolan i Halmstad med en T-formad kompetensprofil. Kärnan vilar på finit elementanalys (FEA), hållfasthetslära, material- och processval samt kvalitetsteknik – förstärkt av Wolfram Mathematica, MATLAB, Python, PLC-styrning, projektledning och praktisk tillverkning i FabLab.
+            </p>
+
+            <div class="flex flex-wrap items-center gap-3 pt-1">
+              <a href="#projekt" class="inline-flex items-center justify-center rounded-xl bg-brand px-5 py-3 text-sm font-semibold text-white hover:bg-brand-dark transition shadow-sm">
+                Utforska tekniska projekt
+              </a>
+              <a href="#kompetenser" class="inline-flex items-center justify-center rounded-xl border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-800 hover:bg-slate-100 transition">
+                Se verktygslåda &amp; standarder
+              </a>
+            </div>
+          </div>
+
+          <!-- Nyckeltalskort -->
+          <div class="lg:col-span-4">
+            <div class="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 shadow-sm space-y-4">
+              <div class="border-b border-slate-100 pb-3">
+                <p class="text-xs font-bold uppercase tracking-wider text-brand">Snabböversikt</p>
+                <p class="text-sm font-semibold text-slate-900 mt-0.5">Industriell bredd &amp; djup</p>
+              </div>
+
+              <div class="grid grid-cols-2 gap-3.5">
+                <div class="rounded-xl bg-slate-50 p-3.5 border border-slate-100">
+                  <p class="text-xl sm:text-2xl font-extrabold text-brand">50 %</p>
+                  <p class="text-xs text-slate-600 mt-0.5 leading-snug">Viktminskning på HEB-200 lyftbalk (321,8 → 163,8 kg)</p>
+                </div>
+                <div class="rounded-xl bg-slate-50 p-3.5 border border-slate-100">
+                  <p class="text-xl sm:text-2xl font-extrabold text-brand">319</p>
+                  <p class="text-xs text-slate-600 mt-0.5 leading-snug">Skyddsrum kartlagda i offline-first SPA (Safemap)</p>
+                </div>
+                <div class="rounded-xl bg-slate-50 p-3.5 border border-slate-100">
+                  <p class="text-xl sm:text-2xl font-extrabold text-brand">4 moduler</p>
+                  <p class="text-xs text-slate-600 mt-0.5 leading-snug">Utbytbar arkitektur i EcoBrew 2.0 för cirkularitet</p>
+                </div>
+                <div class="rounded-xl bg-slate-50 p-3.5 border border-slate-100">
+                  <p class="text-xl sm:text-2xl font-extrabold text-brand">13 mån</p>
+                  <p class="text-xs text-slate-600 mt-0.5 leading-snug">Maskinoperatör &amp; utbildare i FabLab Halmstad</p>
+                </div>
+              </div>
+
+              <p class="text-xs text-slate-500 leading-relaxed">
+                Redo för ett tio veckors avgränsat kandidatexamensarbete med full förståelse för sekretess (NDA) och immateriella rättigheter.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Projektsektion med kategori-filter -->
+    <section id="projekt" class="py-12 sm:py-16">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+          <div>
+            <p class="text-xs font-bold uppercase tracking-wider text-brand">Projekt &amp; Case</p>
+            <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 mt-1">Utvalda tekniska arbeten</h2>
+            <p class="text-sm sm:text-base text-slate-600 mt-1.5 max-w-2xl">
+              Filtrera efter område för att se hur mekanik, simulering, materialval, kvalitet och digitala system samverkar.
+            </p>
+          </div>
+
+          <!-- Filterknappar -->
+          <div class="flex flex-wrap gap-2" role="tablist" aria-label="Filtrera projekt">
+            <button type="button" data-filter="alla" class="filter-btn rounded-xl bg-brand px-3.5 py-2 text-xs sm:text-sm font-semibold text-white transition cursor-pointer">
+              Alla projekt
+            </button>
+            <button type="button" data-filter="mekanik" class="filter-btn rounded-xl border border-slate-300 bg-white px-3.5 py-2 text-xs sm:text-sm font-semibold text-slate-700 hover:bg-slate-100 transition cursor-pointer">
+              Mekanik &amp; FEA
+            </button>
+            <button type="button" data-filter="material" class="filter-btn rounded-xl border border-slate-300 bg-white px-3.5 py-2 text-xs sm:text-sm font-semibold text-slate-700 hover:bg-slate-100 transition cursor-pointer">
+              Material, LCA &amp; Kvalitet
+            </button>
+            <button type="button" data-filter="system" class="filter-btn rounded-xl border border-slate-300 bg-white px-3.5 py-2 text-xs sm:text-sm font-semibold text-slate-700 hover:bg-slate-100 transition cursor-pointer">
+              System, Kod &amp; Ledning
+            </button>
+          </div>
+        </div>
+
+        <div id="projectsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <!-- Projektkort 1 -->
+          <article data-category="mekanik" class="project-card flex flex-col justify-between rounded-2xl border border-slate-200 bg-white p-6 shadow-sm hover:border-brand/40 transition">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-3">
+                <span class="rounded-lg bg-brand-light px-2.5 py-1 text-xs font-semibold text-brand">FEA &amp; Optimering</span>
+                <span class="text-xs text-slate-400 font-medium">3DEXPERIENCE • Mathematica</span>
+              </div>
+              <h3 class="text-lg font-bold text-slate-900">Strukturoptimering av HEB-200 Lyftbalk</h3>
+              <p class="mt-2 text-sm text-slate-600 leading-relaxed">
+                Hållfasthets-, styvhets- och viktoptimering i S355J2-stål över lyftvinklarna 90°, 45° och 30° utifrån STEP-geometri. Inkluderar rensning av svetsdetaljer, Saint-Venants princip, mesh-konvergens (&lt;2,3 % avvikelse mot handberäkning) och analytisk verifiering i Mathematica.
+              </p>
+            </div>
+            <div class="mt-5 pt-3.5 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-slate-800">
+              <span>Volym: 0,041 → 0,021 m³</span>
+              <span class="text-brand">SF ≥ 3 • Max δ &lt; 5 mm</span>
+            </div>
+          </article>
+
+          <!-- Projektkort 2 -->
+          <article data-category="material" class="project-card flex flex-col justify-between rounded-2xl border border-slate-200 bg-white p-6 shadow-sm hover:border-brand/40 transition">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-3">
+                <span class="rounded-lg bg-brand-light px-2.5 py-1 text-xs font-semibold text-brand">Produktutveckling &amp; LCA</span>
+                <span class="text-xs text-slate-400 font-medium">Granta EduPack • Ulrich &amp; Eppinger</span>
+              </div>
+              <h3 class="text-lg font-bold text-slate-900">EcoBrew 2.0 – Modulär Kapselbryggare</h3>
+              <p class="mt-2 text-sm text-slate-600 leading-relaxed">
+                Drev den tekniska utvecklingen genom faserna 0–5 med fokus på fyra utbytbara subsystem (vatten, värme, pod-extraktion och elektronik) utan permanenta förband. Kombinerade DFM (Part Integration), Make-Buy-analys och Eco Audit LCA för värmetålig ABS (T<sub>g</sub> = 110–125 °C).
+              </p>
+            </div>
+            <div class="mt-5 pt-3.5 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-slate-800">
+              <span>4 utbytbara moduler</span>
+              <span class="text-brand">Skalbarhet: 50 000 st</span>
+            </div>
+          </article>
+
+          <!-- Projektkort 3 -->
+          <article data-category="material" class="project-card flex flex-col justify-between rounded-2xl border border-slate-200 bg-white p-6 shadow-sm hover:border-brand/40 transition">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-3">
+                <span class="rounded-lg bg-brand-light px-2.5 py-1 text-xs font-semibold text-brand">Material &amp; Tillverkning</span>
+                <span class="text-xs text-slate-400 font-medium">Ashby-metoden • Eco Audit</span>
+              </div>
+              <h3 class="text-lg font-bold text-slate-900">Fordonskolv &amp; Stilettklack – Processval</h3>
+              <p class="mt-2 text-sm text-slate-600 leading-relaxed">
+                Huvudansvarig för kravsållning, viktad rankning och LCA. Utvärderade 25 gjutmetoder mot smide för 100 000 kolvar (4 kg/st) utifrån RCI, EBQ, toleranser och MUF samt genomförde 7-stegs mekanisk sållning och transport-LCA för stilettklackens kärna.
+              </p>
+            </div>
+            <div class="mt-5 pt-3.5 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-slate-800">
+              <span>Batch: 100 000 kolvar</span>
+              <span class="text-brand">Rheocasting vs. Smide</span>
+            </div>
+          </article>
+
+          <!-- Projektkort 4 -->
+          <article data-category="material" class="project-card flex flex-col justify-between rounded-2xl border border-slate-200 bg-white p-6 shadow-sm hover:border-brand/40 transition">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-3">
+                <span class="rounded-lg bg-brand-light px-2.5 py-1 text-xs font-semibold text-brand">Kvalitet &amp; Standarder</span>
+                <span class="text-xs text-slate-400 font-medium">FMEA • ISO • OFP/NDT</span>
+              </div>
+              <h3 class="text-lg font-bold text-slate-900">FMEA, CE-märkning &amp; Svetsteknik</h3>
+              <p class="mt-2 text-sm text-slate-600 leading-relaxed">
+                Upprättade Konstruktions-FMEA med RPN-värdering, utredde CE-märkning och säkerhetsstyrning för integrerade linjer (AFS 2023:4) samt analyserade svetsmetoder, WPS/WPQR och oförstörande provning (SS-EN ISO 5817) för Weldox 700, 1.4436 och P235GH.
+              </p>
+            </div>
+            <div class="mt-5 pt-3.5 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-slate-800">
+              <span>Riskanalys &amp; Regelefterlevnad</span>
+              <span class="text-brand">ISO 9001:2026 / 14001:2026</span>
+            </div>
+          </article>
+
+          <!-- Projektkort 5 -->
+          <article data-category="mekanik" class="project-card flex flex-col justify-between rounded-2xl border border-slate-200 bg-white p-6 shadow-sm hover:border-brand/40 transition">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-3">
+                <span class="rounded-lg bg-brand-light px-2.5 py-1 text-xs font-semibold text-brand">CAD &amp; FabLab</span>
+                <span class="text-xs text-slate-400 font-medium">Ritningar • 3D-print • Laser</span>
+              </div>
+              <h3 class="text-lg font-bold text-slate-900">CAD-Ritningar, Pantsamlare &amp; UTEXPO</h3>
+              <p class="mt-2 text-sm text-slate-600 leading-relaxed">
+                Tog fram sammanställnings- och detaljritningar med snittvyer, detaljförstoringar och BOM för en 10-komponents RC-motor samt PETG-detaljer. Designade och 3D-printade pantsamlare till campus samt tillverkade och lasergraverade UTEXPO-utmärkelser.
+              </p>
+            </div>
+            <div class="mt-5 pt-3.5 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-slate-800">
+              <span>10-delars RC-motor BOM</span>
+              <span class="text-brand">FabLab Prototyper</span>
+            </div>
+          </article>
+
+          <!-- Projektkort 6 -->
+          <article data-category="system" class="project-card flex flex-col justify-between rounded-2xl border border-slate-200 bg-white p-6 shadow-sm hover:border-brand/40 transition">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-3">
+                <span class="rounded-lg bg-brand-light px-2.5 py-1 text-xs font-semibold text-brand">PLC • DSP • Projektledning</span>
+                <span class="text-xs text-slate-400 font-medium">GX Works 2 • MATLAB • SPA</span>
+              </div>
+              <h3 class="text-lg font-bold text-slate-900">Hiss-PLC, Safemap &amp; Signalanalys</h3>
+              <p class="mt-2 text-sm text-slate-600 leading-relaxed">
+                Leder ett 5-personersteam i Safemap (offline-first SPA för 319 skyddsrum med Lantmäteriets geodata och Haversine-formeln). Felsökte scancykel-konflikter i 4-våningshiss (GX Works 2) och utförde 1D/2D-FFT, SDR-GUI och GPS-analys i MATLAB.
+              </p>
+            </div>
+            <div class="mt-5 pt-3.5 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-slate-800">
+              <span>Projektledare (5 pers)</span>
+              <span class="text-brand">30–60 % kortare söktid</span>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Kompetenser & Verktygslåda -->
+    <section id="kompetenser" class="border-y border-slate-200 bg-white py-12 sm:py-16">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div class="mb-8">
+          <p class="text-xs font-bold uppercase tracking-wider text-brand">Verktygslåda</p>
+          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 mt-1">Tekniska färdigheter</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div class="rounded-2xl border border-slate-200 bg-slate-50/70 p-5">
+            <h3 class="text-sm font-bold uppercase tracking-wide text-brand mb-2">CAD &amp; Konstruktion</h3>
+            <p class="text-sm text-slate-700 leading-relaxed">
+              Dassault 3DEXPERIENCE, CATIA, Autodesk Inventor, OpenSCAD, sammanställnings- och detaljritningar (BOM, snittvyer, detaljförstoringar enligt maskinteknisk standard).
+            </p>
+          </div>
+
+          <div class="rounded-2xl border border-slate-200 bg-slate-50/70 p-5">
+            <h3 class="text-sm font-bold uppercase tracking-wide text-brand mb-2">Simulering &amp; Hållfasthet</h3>
+            <p class="text-sm text-slate-700 leading-relaxed">
+              Finit Elementanalys (FEA), Abaqus, SimSolid, Wolfram Mathematica (differentialekvationer, symbolisk ekvationslösning), Load Path Management, mesh-konvergens, Saint-Venants princip, termisk spänningsanalys, knäckning, utmattning &amp; fleraxliga spänningstillstånd.
+            </p>
+          </div>
+
+          <div class="rounded-2xl border border-slate-200 bg-slate-50/70 p-5">
+            <h3 class="text-sm font-bold uppercase tracking-wide text-brand mb-2">Material &amp; Tillverkning</h3>
+            <p class="text-sm text-slate-700 leading-relaxed">
+              Ansys Granta EduPack (Ashby-metoden, Eco Audit LCA), DFM (Part Integration), DFA, Make-Buy-analys, gjutning (Rheocasting/Thixocasting) och smide, svetsteknik &amp; OFP/NDT (SS-EN ISO 5817, pWPS/WPS/WPQR enligt ISO 15614-1, ISO 9606-1, ISO 3834), additiv tillverkning (FDM/PETG).
+            </p>
+          </div>
+
+          <div class="rounded-2xl border border-slate-200 bg-slate-50/70 p-5">
+            <h3 class="text-sm font-bold uppercase tracking-wide text-brand mb-2">Kvalitet, Säkerhet &amp; Ledning</h3>
+            <p class="text-sm text-slate-700 leading-relaxed">
+              Konstruktions-FMEA (RPN), Paretodiagram, orsaks-verkan-diagram (7M), Ulrich &amp; Eppinger, Pugh- och Need-Metric-matriser, modulär produktarkitektur, Maskindirektivet (2006/42/EG / AFS 2023:4), riskbedömning (ISO 12100, 13849-1, 10218-2), PED (AFS 2016:1), ISO 9001:2026, ISO 14001:2026 &amp; ISO 45001.
+            </p>
+          </div>
+
+          <div class="rounded-2xl border border-slate-200 bg-slate-50/70 p-5 md:col-span-2 lg:col-span-2">
+            <h3 class="text-sm font-bold uppercase tracking-wide text-brand mb-2">Styrsystem, Signalbehandling, Kod &amp; Dokumentation</h3>
+            <p class="text-sm text-slate-700 leading-relaxed">
+              Mitsubishi GX Works 2 (PLC / ladder-logik), MATLAB (1D/2D-FFT, digitala filter, autokorrelation, kovariansanalys, GUI-utveckling), Python (NumPy, OOP), JavaScript/HTML/CSS (SPA-arkitektur), LaTeX &amp; Markdown (Obsidian). Språk: Svenska (modersmål) och engelska (CEFR C1).
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Erfarenhet & Utbildning -->
+    <section id="erfarenhet" class="py-12 sm:py-16">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+          <!-- Arbetslivserfarenhet & Förtroendeuppdrag -->
+          <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm space-y-5">
+            <div>
+              <p class="text-xs font-bold uppercase tracking-wider text-brand">Bakgrund</p>
+              <h2 class="text-xl sm:text-2xl font-bold text-slate-900 mt-0.5">Erfarenhet &amp; Förtroendeuppdrag</h2>
+            </div>
+
+            <div class="space-y-4">
+              <div class="border-l-2 border-brand pl-4">
+                <div class="flex flex-wrap items-baseline justify-between gap-2">
+                  <h3 class="text-sm font-bold text-slate-900">Maskinoperatör &amp; Utbildare – Fablab Student Halmstad</h3>
+                  <span class="text-xs font-medium text-slate-500">Dec 2024 – Jan 2026</span>
+                </div>
+                <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
+                  Drift, kalibrering och uppgradering av 3D-skrivare (Prusa MK4 till MK4S och Core One), laserskärarunderhåll samt workshops och Open Hours i CAD, 3D-utskrifter och laserskärning.
+                </p>
+              </div>
+
+              <div class="border-l-2 border-brand pl-4">
+                <div class="flex flex-wrap items-baseline justify-between gap-2">
+                  <h3 class="text-sm font-bold text-slate-900">Programrådsrepresentant &amp; Föreningsengagemang</h3>
+                  <span class="text-xs font-medium text-slate-500">2024 – Pågående</span>
+                </div>
+                <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
+                  Årskursrepresentant i maskinteknikprogrammets programråd. Aktiv i studentföreningsutskott som Friskvårdare (första hjälpen &amp; HLR), Marketing Manager i Vingmuttern samt bartender, dörrvakt och merch-producent i FabLab för Festkommittén.
+                </p>
+              </div>
+
+              <div class="border-l-2 border-brand pl-4">
+                <div class="flex flex-wrap items-baseline justify-between gap-2">
+                  <h3 class="text-sm font-bold text-slate-900">Service &amp; Kundbemötande (Deltid)</h3>
+                  <span class="text-xs font-medium text-slate-500">Maj 2022 – Okt 2025</span>
+                </div>
+                <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
+                  Croupier på Cherry Spelglädje AB och restaurangmedarbetare på Gekås Ullared Restaurang AB parallellt med studierna – hög stresstolerans, snabb huvudräkning och service i högt tempo.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Utbildning -->
+          <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm space-y-5">
+            <div>
+              <p class="text-xs font-bold uppercase tracking-wider text-brand">Akademisk grund</p>
+              <h2 class="text-xl sm:text-2xl font-bold text-slate-900 mt-0.5">Utbildning</h2>
+            </div>
+
+            <div class="space-y-4">
+              <div class="rounded-xl bg-slate-50 p-4 border border-slate-100">
+                <div class="flex flex-wrap items-baseline justify-between gap-2">
+                  <h3 class="text-sm font-bold text-slate-900">Civilingenjör i maskinteknik, hållbar design &amp; innovation (300 hp)</h3>
+                  <span class="text-xs font-semibold text-brand">Högskolan i Halmstad • År 3</span>
+                </div>
+                <p class="text-xs sm:text-sm text-slate-700 mt-2 leading-relaxed">
+                  <strong class="font-semibold text-slate-900">Avklarade kurser:</strong> FEM och konstruktionsanalys, Hållfasthetslära, Materialval, Material och tillverkning, Konstruktion och visualisering, Designprocesser, principer och verktyg (CAD, ritteknik, yrkesetik), Hållbar produktutveckling, Linjär algebra, Programmering, Social innovation i en digital kontext, Hållbar utveckling – tvärkulturellt projekt.
+                </p>
+                <p class="text-xs sm:text-sm text-slate-700 mt-2 leading-relaxed">
+                  <strong class="font-semibold text-slate-900">Pågående &amp; godkända projektmoment:</strong> Innovationsprojekt, Sensorer, signaler och system, Reglerteknik, Envariabelanalys (godkänt projekt), Algebra och diskret matematik (godkänt projekt).
+                </p>
+              </div>
+
+              <div class="rounded-xl bg-slate-50 p-4 border border-slate-100">
+                <div class="flex flex-wrap items-baseline justify-between gap-2">
+                  <h3 class="text-sm font-bold text-slate-900">Summer School WISER (HEROES – European University Alliance)</h3>
+                  <span class="text-xs font-medium text-slate-500">Högskolan i Halmstad</span>
+                </div>
+                <p class="text-xs sm:text-sm text-slate-700 mt-1.5 leading-relaxed">
+                  Tvärvetenskaplig utbildning inom samhällsinnovation, design thinking och pedagogik.
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Kontakt & Footer -->
+  <footer id="kontakt" class="border-t border-slate-200 bg-slate-900 text-white py-10 sm:py-12">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+      <div class="space-y-1">
+        <p class="text-lg font-bold">Theo Löfgren</p>
+        <p class="text-sm text-slate-300">Civilingenjörsstudent i Maskinteknik • Halmstad, Sverige</p>
+        <p class="text-xs text-slate-400">Öppen för förslag på kandidatexamensarbeten (15 hp) inom maskinteknik.</p>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-3">
+        <button type="button" id="btnCopySummary" class="inline-flex items-center justify-center rounded-xl bg-brand px-4 py-2.5 text-xs sm:text-sm font-semibold text-white hover:bg-brand-dark transition cursor-pointer">
+          Kopiera kort pitch
+        </button>
+        <a href="https://www.linkedin.com/in/theo-löfgren-b1b059342/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center rounded-xl border border-slate-700 bg-slate-800 px-4 py-2.5 text-xs sm:text-sm font-semibold text-slate-100 hover:bg-slate-700 transition">
+          LinkedIn-profil
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const filterButtons = document.querySelectorAll('.filter-btn');
+      const projectCards = document.querySelectorAll('.project-card');
+      const btnCopySummary = document.getElementById('btnCopySummary');
+      const toast = document.getElementById('toast');
+      const toastText = document.getElementById('toastText');
+      let toastTimer = null;
+
+      /**
+       * Visar en kort notis i nedre högra hörnet.
+       */
+      function showToast(message) {
+        try {
+          toastText.textContent = message;
+          toast.classList.remove('hidden');
+          clearTimeout(toastTimer);
+          toastTimer = setTimeout(() => {
+            toast.classList.add('hidden');
+          }, 2800);
+        } catch (err) {
+          console.error('Kunde inte visa notis:', err);
+        }
+      }
+
+      /**
+       * Filtrerar projektkorten utifrån vald kategori.
+       */
+      function applyFilter(selectedCategory) {
+        try {
+          projectCards.forEach((card) => {
+            const cardCat = card.getAttribute('data-category');
+            const shouldShow = selectedCategory === 'alla' || cardCat === selectedCategory;
+            card.classList.toggle('hidden', !shouldShow);
+          });
+
+          filterButtons.forEach((btn) => {
+            const isActive = btn.getAttribute('data-filter') === selectedCategory;
+            btn.classList.toggle('bg-brand', isActive);
+            btn.classList.toggle('text-white', isActive);
+            btn.classList.toggle('border', !isActive);
+            btn.classList.toggle('border-slate-300', !isActive);
+            btn.classList.toggle('bg-white', !isActive);
+            btn.classList.toggle('text-slate-700', !isActive);
+          });
+        } catch (err) {
+          console.error('Fel vid filtrering:', err);
+        }
+      }
+
+      /**
+       * Kopierar en kort introduktionstext till urklipp.
+       */
+      function copyPitch() {
+        const pitch = 'Theo Löfgren – Civilingenjörsstudent i maskinteknik (år 3, Högskolan i Halmstad) som söker kandidatexamensarbete (15 hp). Erfarenhet av FEA (3DEXPERIENCE, SimSolid, Abaqus), Wolfram Mathematica, Granta EduPack (materialval & LCA), DFM/FMEA/ISO, PLC (GX Works 2), MATLAB, projektledning och FabLab-tillverkning.';
+        try {
+          const tempTextarea = document.createElement('textarea');
+          tempTextarea.value = pitch;
+          tempTextarea.setAttribute('readonly', '');
+          tempTextarea.style.position = 'absolute';
+          tempTextarea.style.left = '-9999px';
+          document.body.appendChild(tempTextarea);
+          tempTextarea.select();
+          document.execCommand('copy');
+          document.body.removeChild(tempTextarea);
+          showToast('Kort introduktion kopierad till urklipp.');
+        } catch (err) {
+          console.error('Kopiering misslyckades:', err);
+          showToast('Kunde inte kopiera automatiskt.');
+        }
+      }
+
+      window.addEventListener('DOMContentLoaded', () => {
+        filterButtons.forEach((btn) => {
+          btn.addEventListener('click', () => {
+            const category = btn.getAttribute('data-filter') || 'alla';
+            applyFilter(category);
+          });
+        });
+
+        if (btnCopySummary) {
+          btnCopySummary.addEventListener('click', copyPitch);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
